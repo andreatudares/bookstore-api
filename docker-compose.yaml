@@ -1,0 +1,61 @@
+services:
+  books-service:
+    build: ./books-service
+    image: "books-service-local:latest"
+    depends_on:
+      - books-database
+    environment:
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_NAME=books-service
+      - DATABASE_HOSTNAME=books-database
+      - DATABASE_PORT=5432
+    ports:
+      - "8001:80"
+    volumes:
+      - ./books-service:/app
+
+  orders-service:
+    build: ./orders-service
+    image: "orders-service-local:latest"
+    depends_on:
+      - orders-database
+    environment:
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+      - DATABASE_NAME=orders-service
+      - DATABASE_HOSTNAME=orders-database
+      - DATABASE_PORT=5432
+      - BOOKS_API_URL=http://books-service:80
+    ports:
+      - "8002:80"
+    volumes:
+      - ./orders-service:/app
+
+  books-database:
+    image: postgres:15-alpine
+    container_name: books-db
+    volumes:
+      - books_postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=books-service
+
+  orders-database:
+    image: postgres:15-alpine
+    container_name: orders-db
+    volumes:
+      - orders_postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=orders-service
+
+volumes:
+  books_postgres_data:
+  orders_postgres_data:
