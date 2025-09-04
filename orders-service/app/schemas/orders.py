@@ -12,6 +12,7 @@ OrderItemId = NewType("OrderItemId", uuid.UUID)
 
 
 class OrderItemModel(BaseModel):
+
     model_config = ConfigDict(from_attributes=True)
 
     id: OrderItemId
@@ -21,6 +22,7 @@ class OrderItemModel(BaseModel):
 
 
 class OrderModel(BaseModel):
+
     model_config = ConfigDict(from_attributes=True)
 
     id: OrderId
@@ -34,6 +36,7 @@ class OrderModel(BaseModel):
 
 
 class OrderItemCreateModel(BaseModel):
+
     book_id: BookId
     quantity: int
 
@@ -46,6 +49,7 @@ class OrderItemCreateModel(BaseModel):
 
 
 class OrderCreateModel(BaseModel):
+
     name: str
     phone_number: str | None = None
     order_items: list[OrderItemCreateModel]
@@ -59,5 +63,6 @@ class OrderCreateModel(BaseModel):
 
 
 class OrderUpdateModel(BaseModel):
+
     total_amount: float | None = None
     updated_at: datetime.datetime

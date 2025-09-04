@@ -7,7 +7,7 @@ class ServiceSettings(BaseSettings):
     """Service Settings."""
 
     environment: str = "local"
-    service_name: str = "tepuii-api"
+    service_name: str = "orders-service"
 
 
 class BooksServiceSettings(BaseSettings):

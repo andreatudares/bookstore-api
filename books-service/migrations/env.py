@@ -41,7 +41,6 @@ def run_migrations_offline() -> None:
     database_uri = (
         "postgresql+psycopg2://postgres:postgres" "@books-database:5432/books-service"
     )
-    print("DATABASE_URI =", database_uri)
 
     url = config.get_main_option("sqlalchemy.url", database_uri)
     context.configure(
@@ -66,7 +65,6 @@ def run_migrations_online() -> None:
     database_uri = (
         "postgresql+psycopg2://postgres:postgres" "@books-database:5432/books-service"
     )
-    print("DATABASE_URI =", database_uri)
 
     config.set_main_option("sqlalchemy.url", database_uri)
 

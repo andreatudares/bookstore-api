@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.database.operations import book_operations
 from app.schemas import books as books_schemas
 
+
 def get_books(
     db: Session,
 ) -> list[books_schemas.BookModel]:

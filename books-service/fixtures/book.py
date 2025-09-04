@@ -1,9 +1,9 @@
 """Book Fixtures."""
 
 import datetime
-import uuid
 import faker
 import pytest
+import uuid
 
 from typing import Any
 
