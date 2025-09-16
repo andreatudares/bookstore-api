@@ -48,29 +48,24 @@ For local development, a Docker container is used.
 1. Create a `.env.local` file with the following variables for Books Service (books-service/.env):
 ```bash
     ENVIRONMENT=local
-    SERVICE_NAME=tepuii-api
+    SERVICE_NAME=books-service
     DATABASE_USERNAME=postgres
     DATABASE_PASSWORD=postgres
-    DATABASE_HOSTNAME=127.0.0.1
+    DATABASE_HOSTNAME=books-database
     DATABASE_PORT=8001
-    DATABASE_NAME=tepuii-api-db
-    PYJWT_SECRET=cpmnrhQfHBkTurLv0pwHupZdvb9jooZN1YtRnjIsIuE
-    HEALTH_CHECK_SECRET=45tAdZ0NmEMGCbIFVe5Ux
-    LOGFIRE_TOKEN=fake-token
+    DATABASE_NAME=books-service
 ```
 
 2. Create a `.env.local` file with the following variables for Orders Service (orders-service/.env):
 ```bash
     ENVIRONMENT=local
-    SERVICE_NAME=tepuii-api
+    SERVICE_NAME=orders-service
     DATABASE_USERNAME=postgres
     DATABASE_PASSWORD=postgres
-    DATABASE_HOSTNAME=127.0.0.1
+    DATABASE_HOSTNAME=localhost
     DATABASE_PORT=8001
-    DATABASE_NAME=tepuii-api-db
-    PYJWT_SECRET=cpmnrhQfHBkTurLv0pwHupZdvb9jooZN1YtRnjIsIuE
-    HEALTH_CHECK_SECRET=45tAdZ0NmEMGCbIFVe5Ux
-    LOGFIRE_TOKEN=fake-token
+    DATABASE_NAME=orders-service
+    BOOKS_API_URL=http://books-service:80
 ```
 
 3. To run the project locally with docker compose, use the following command:
